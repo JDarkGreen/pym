@@ -143,23 +143,25 @@ figure
 	//Imagen
 	figure 
 		background-size: cover 
-		height         : 120px 
 
 //+++Título
 .pageCommon__banner__title
-	bottom           : 10px
-	color            : white
-	font-size        : 30px
-	font-weight      : 700
-	margin           : 0	
-	position         : absolute
-	right            : 15%
-	+text-shadow( 1px 1px 4px black )
+	background : rgba(0,0,0,.7)
+	bottom     : 30%
+	color      : #fff
+	font-size  : 30px
+	font-weight: 700
+	line-height: 1em
+	margin     : 0
+	padding    : 15px 60px
+	position   : absolute
+	right      : 8%
 
 //++Banner de Servicios
 .sectionCommon__banner__services
 	background: $theme_red
 	color     : white 	
+	margin    : 0 auto 50px
 	padding   : 32px 0 
 
 //+BOTONES
@@ -312,6 +314,13 @@ figure
 		right     : 0
 		width     : 95px
 
+//++Varacion a gris
+#separator-line-gray
+	background: $theme_gray_claro
+	height    : 2px 
+	margin    : 55px 0
+	width     : 100%
+	
 //CORRECCION IMAGENES CAROUSEL
 .owl-carousel
 	.owl-item 
@@ -375,10 +384,12 @@ figure
 						background: $theme_gplus
 						color     : white 
 
-//SECCIONES DENTRO DE PAGINA
-.pageWrapperSection
+//SECCIONES GENERAL DE PAGINA
+.pageWrapper
 	font-family: "Roboto" , sans-serif
-	padding    : 50px 0
+	padding    : 80px 0
+.pageWrapperSection
+	padding: 50px 0
 
 /***************************************************************************************/
 /**--  HEADER   ----------------------------------------------------------------------**/
@@ -413,7 +424,7 @@ figure
 /*[ $CONTENEDOR LOGO Y NAVEGACION ] */		
 .mainHeader__content
 	background: white
-	padding   : 22px 0
+	padding   : 8px 0
 
 //NAVEGACIÓN PRINCIPAL
 .mainNavigation
@@ -446,7 +457,7 @@ figure
 /***************************************************************************************/
 
 #sb-site
-	padding: 155px 0 0 0
+	padding: 128px 0 0 0
 
 /***************************************************************************************/
 /**--  WRAPPER GENERAL ---------------------------------------------------------------**/
@@ -602,7 +613,6 @@ figure
 
 // SECCION MISCELANEO
 .pageInicio__miscelaneo
-	padding: 50px 0 
 /* Slider de Post */
 .pageInicio_slider_post
 	/* Artículos */
@@ -652,6 +662,86 @@ figure
 #canvas-map
 	height: 445px 
 	width : 100%
+
+/***************************************************************************************/
+/**--  PAGINA NOSOTROS ---------------------------------------------------------------**/
+/***************************************************************************************/
+
+//++Descripcion
+.pageNosotros__description
+	//Titulos
+	h1, h2 , h3 , h4
+		color      : $theme_red
+		font-size  : 32px
+		font-weight: 700
+		line-height: 1em
+		margin     : 0 auto 25px
+		padding    : 0 0 5px
+		position   : relative
+		//before
+		&:before
+			background: $theme_red
+			bottom    : -4px
+			content   : ""
+			height    : 3px
+			left      : 0
+			position  : absolute
+			right     : 0
+			width     : 124px		
+	//Parrafos
+	p 
+		font-size  : 15px
+		line-height: 1.4em
+
+/***************************************************************************************/
+/**--  PAGINA SERVICIOS  -------------------------------------------------------------**/
+/***************************************************************************************/
+
+/* Sidebar Comun */
+.sidebarCommon
+	font-family: "Roboto Condensed" , sans-serif
+	/* Lins o botoneras */
+	a 
+		+transition( all 500ms ease-in-out )
+		border-bottom  : 1px solid $theme_gray_claro
+		color          : $theme_gray_oscuro
+		display        : block 
+		font-size      : 16px 
+		font-weight    : 600
+		padding        : 14px 0
+		position       : relative
+		text-decoration: none
+		//Icon 
+		i 
+			font-size: 12px
+			position : absolute
+			right    : 4px
+			top      : 40%
+		//active
+		&.active , &:hover 
+			color: $theme_red
+/* Titulo sidebar */
+.titleSidebar
+	color      : black 
+	font-size  : 22px
+	font-weight: 600
+
+/* Section Flecha de Carousel */
+.arrowsCarouselSection
+	background: $theme_red
+	color     : white 
+	padding   : 7px 0 
+	/* Titulo */
+	h3
+		color    : white 
+		display  : inline-block
+		font-size: 20px  
+		margin   : 0 40px
+	/* Flechas de carousel */
+	a 
+		color          : white 
+		font-size      : 24px 
+		text-decoration: none 
 
 
 /***************************************************************************************/

@@ -82,29 +82,29 @@ function create_category_taxonomy() {
     'rewrite'          => array( 'slug' => 'image-category' ),
   ));   
 
-  /* categorias promoción */
+  /* categorias proyectos */
   $labels4 = array(
-    'name'             => __( 'Categoría Promoción'),
-    'singular_name'    => __( 'Categoría Promoción'),
-    'search_items'     => __( 'Buscar Categoría Promoción'),
-    'all_items'        => __( 'Todas Categorías de la Promoción' ),
-    'parent_item'      => __( 'Categoría padre de la Promoción' ),
+    'name'             => __( 'Categoría Proyecto'),
+    'singular_name'    => __( 'Categoría Proyecto'),
+    'search_items'     => __( 'Buscar Categoría Proyecto'),
+    'all_items'        => __( 'Todas Categorías de la Proyecto' ),
+    'parent_item'      => __( 'Categoría padre de la Proyecto' ),
     'parent_item_colon'=> __( 'Categoría padre:' ),
-    'edit_item'        => __( 'Editar categoría de la Promoción' ), 
-    'update_item'      => __( 'Actualizar categoría de la Promoción' ),
-    'add_new_item'     => __( 'Agregar nueva categoría de la Promoción' ),
-    'new_item_name'    => __( 'Nuevo nombre categoría de la Promoción' ),
-    'menu_name'        => __( 'Categoria Promoción' ),
+    'edit_item'        => __( 'Editar categoría de la Proyecto' ), 
+    'update_item'      => __( 'Actualizar categoría de la Proyecto' ),
+    'add_new_item'     => __( 'Agregar nueva categoría de la Proyecto' ),
+    'new_item_name'    => __( 'Nuevo nombre categoría de la Proyecto' ),
+    'menu_name'        => __( 'Categoria Proyecto' ),
   ); 
 
   // Now register the taxonomy
-  register_taxonomy('promotion_category',array('promocion'), array(
+  register_taxonomy('proyecto_category',array('proyecto'), array(
     'hierarchical'     => true,
     'labels'           => $labels4,
     'show_ui'          => true,
     'show_admin_column'=> true,
     'query_var'        => true,
-    'rewrite'          => array( 'slug' => 'promotion-category' ),
+    'rewrite'          => array( 'slug' => 'proyecto-category' ),
   ));  
 
 

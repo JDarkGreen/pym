@@ -340,33 +340,32 @@ function cd_banner_text_save( $post_id )
 /*|------------ METABOX EDITOR WYSIWYG PARA CADA SERVICIO  -----------------|*/
 /*|-------------------------------------------------------------------------|*/
 
-//Este metabox permite agregar un editor de texto para el segundo paquete
-//en este caso de servicio
-/*add_action('add_meta_boxes', 'theme_register_add_editors');
+//Este metabox permite agregar un editor de texto para informacion extra
+add_action('add_meta_boxes', 'theme_register_add_editors');
 
 function theme_register_add_editors(){
-	add_meta_box('WYSIWG_THEME_PERF' , __('Servicio: Paquete 2' , LANG ) , 'custom_theme_cb' , array('servicio') );
+	add_meta_box('WYSIWG_THEME_PERF' , __('Contenido Extra: ' , LANG ) , 'custom_theme_cb' , array('page') );
 }
 
 function custom_theme_cb(){
 	global $post;
 	$option_content = array('editor_height'=>'200');
 
-	echo "<h2><strong> Servicio: Información de 2 Paquete </strong></h2>";
-	$text1 = get_post_meta( $post->ID , 'custom_theme_'.$post->ID.'_pack2' , true );
-	wp_editor( htmlspecialchars_decode( $text1 ), 'custom_theme_'.$post->ID.'_pack2' , $option_content );	
+	echo "<h2><strong> Extra: Información Extra:</strong></h2>";
+	$text1 = get_post_meta( $post->ID , 'custom_theme_'.$post->ID.'_extra' , true );
+	wp_editor( htmlspecialchars_decode( $text1 ), 'custom_theme_'.$post->ID.'_extra' , $option_content );	
 }
 
 function custom_theme_save_postdata( $post_id ){
 
-	if( !empty( $_POST['custom_theme_'.$post_id.'_pack2'] ) ){
-		$data = htmlspecialchars( $_POST['custom_theme_'.$post_id.'_pack2'] );
-		update_post_meta( $post_id, 'custom_theme_'.$post_id.'_pack2' , $data );
+	if( !empty( $_POST['custom_theme_'.$post_id.'_extra'] ) ){
+		$data = htmlspecialchars( $_POST['custom_theme_'.$post_id.'_extra'] );
+		update_post_meta( $post_id, 'custom_theme_'.$post_id.'_extra' , $data );
 	}
 }
 
 //Save the Data
-add_action( 'save_post', 'custom_theme_save_postdata' );*/
+add_action( 'save_post', 'custom_theme_save_postdata' );
 
 
 ?>

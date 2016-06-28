@@ -150,14 +150,8 @@
 					<a href="" class="pull-xs-right btnCommon__show-more text-uppercase"><?php _e( "ver más" , LANG ) ?></a>
 					<!-- Limpiar Floats --> <div class="clearfix"></div>
 
-					<!-- Sección de Catálogo -->
-					<section class="pageInicio__our__pdf">
-						<?php /*Obtener PDF*/ 
-							$link_catalogo = isset($theme_mod['widget_nosotros_pdf']) && !empty($theme_mod['widget_nosotros_pdf']) ? $theme_mod['widget_nosotros_pdf'] : "#";
-						?>
-						<!-- Imagen Icono --> <figure><img src="<?= IMAGES ?>/icon/icon-file.png" alt="pdf-catalogo-constructora" class="img-fluid imgNotBlur"></figure>
-						<!-- Enlace --> <a target="_blank" href="<?= $link_catalogo; ?>" class="btnCommon__show-more btnCommon__show-more--black text-uppercase"><?php _e( "descargar pdf catálogo" , LANG ) ?></a>
-					</section> <!-- /.pageInicio__our__pdf -->
+					<!-- Incluir SECCION PDF CATALOGO -->
+					<?php include( locate_template("partials/pdf-catalogo.php") ); ?>
 
 				</section> <!-- /.pageInicio__our__texto-->
 				<!-- Titulo -->
@@ -181,7 +175,7 @@ include( locate_template("partials/banner-services.php") );
 */ 
 ?>
 
-<section class="pageInicio__miscelaneo">
+<section class="pageInicio__miscelaneo pageWrapperSection">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-8">

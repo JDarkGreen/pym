@@ -72,9 +72,9 @@ var j = jQuery.noConflict();
 		});
 
 		/*|----------------------------------------------------------------------|*/
-		/*|-----  EVENTOS FLECHAS CAROUSEL COMUNES  -----|*/
+		/*|-----  CLASE PREVENIR EVENTOS   -----|*/
 		/*|----------------------------------------------------------------------|*/		
-		j(".arrow__common-slider").on('click',function(e){ e.preventDefault(); });
+		j(".js-prevent-default").on('click',function(e){ e.preventDefault(); });
 
 		/*|----------------------------------------------------------------------|*/
 		/*|-----  CAROUSEL ITEMS OWN CAROUSEL - SETEAR PARAMETROS   -----|*/
