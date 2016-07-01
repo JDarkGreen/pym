@@ -55,14 +55,21 @@
 					if( !empty( $post->post_content ) ) : 
 
 						$texto    = $post->post_content;
-						$clientes = explode( "," , $texto );
+						$clientes = explode( "," , $texto ); /*var_dump($clientes);*/
 
 						foreach( $clientes as $cliente ) :
+
+							$cliente = trim( $cliente );
+						if( !empty( $cliente ) ) :
 				?>
-				<div class="col-xs-6 text-xs-center text-capitalize">
-					<p><?php _e( $cliente , LANG ); ?></p>
+				<div class="col-xs-6 text-xs-left text-capitalize">
+					<p>
+						<!-- Icono viñeta -->
+						<i class="fa fa-square" aria-hidden="true"></i>
+						<?php _e( $cliente , LANG ); ?>
+					</p>
 				</div> <!-- /.col-xs-6 -->
-				<?php endforeach; endif; //fin condicional ?>
+				<?php endif; endforeach; endif; //fin condicional ?>
 
 				<!-- Limpiar Float --> <div class="clearfix"></div>
 

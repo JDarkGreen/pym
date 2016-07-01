@@ -12,12 +12,21 @@
 					<!-- Item Footer -->
 					<div class="col-xs-12 col-md-4">
 						<div class="mainFooter__item container-flex align-content">
+
 							<!-- Logo -->
 							<h1 class="">
 								<a href="<?= site_url() ?>">
 									<img src="<?= IMAGES ?>/logo_pym_blanco.png" alt="pym-constructora-" class="img-fluid center-block" />
 								</a>
-							</h1> <!-- /.lgoo -->
+							</h1> <!-- /.logo -->
+
+							<!-- Separador --> <br/>
+
+							<!-- Codigo QR -->
+							<figure class="codigoQr__image">
+								<img src="<?= IMAGES ?>/pym_codigoqr.png" alt="pym-constructora-codigo-acabados-construccion" class="img-fluid">
+							</figure> <!-- /. -->
+
 						</div> <!-- /.mainFooter__item -->
 					</div> <!-- /.col-xs-12 col-md-3 -->
 

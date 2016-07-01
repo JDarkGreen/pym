@@ -92,8 +92,33 @@
 			</section> <!-- /.mainHeader__content -->
 		</div> <!-- /.container -->
 			
-
 	</div> <!-- /.hidden-xs-down relative -->
+
+	<!-- Contenedor Version Mobile -->
+	<div class="mainHeader__container container-flex align-content hidden-sm-up">
+
+		<!-- Icono Izquierda -->
+		<div id="toggle-left-nav" class="icon-header"> 
+			<i class="fa fa-bars" aria-hidden="true"></i> 
+		</div> <!-- /.icon-header -->	
+
+		<!-- Logo Principal -->
+		<h1 class="logo">
+			<a href="<?= site_url() ?>">
+				<?php if( !empty($theme_mod['logo']) ) : ?>
+					<img src="<?= $theme_mod['logo'] ?>" alt="<?= "-logo-" . bloginfo('name') ?>" class="img-responsive center-block" />
+				<?php else: ?>
+					<img src="<?= IMAGES ?>/logo.png" alt="<?= "-logo-" . bloginfo('name') ?>" class="img-responsive center-block" />
+				<?php endif; ?>
+			</a>
+		</h1> <!-- /.lgoo -->
+
+		<!-- Icono Izquierda -->
+		<div id="toggle-right-nav" class="icon-header"> 
+			<i class="fa fa-bars" aria-hidden="true"></i> 
+		</div> <!-- /.icon-header -->
+	
+	</div> <!-- /. -->
 
 </header> <!-- /.mainHeader sb-slide -->
 

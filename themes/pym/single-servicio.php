@@ -54,7 +54,7 @@
 
 						<!-- Contenido y galeria -->
 						<div class="row">
-							<div class="col-xs-6 text-justify">
+							<div class="col-xs-6">
 								<!-- Contenido -->
 								<?php 
 									if( !empty($post->post_content) ) : 

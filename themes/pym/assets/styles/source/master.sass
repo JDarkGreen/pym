@@ -418,6 +418,10 @@ figure
 			color: $theme_red
 
 
+/* CODIGO QR */
+.codigoQr__image
+	max-width: 150px
+
 /***************************************************************************************/
 /**--  HEADER   ----------------------------------------------------------------------**/
 /***************************************************************************************/
@@ -861,10 +865,15 @@ figure
 .pageClientes__content
 	background: $theme_gray_claro
 	color     : black 
-	padding   : 55px 0 
+	padding   : 55px
 	/* parrafo */
 	p 
 		font-weight: 600
+		/* Icono */
+		i 
+			display  : inline-block
+			font-size: 10px 
+			margin   : 0 10px  0 0
 
 /***************************************************************************************/
 /**--  PAGINA BLOG   -------------------------------------------------------------**/
@@ -923,7 +932,7 @@ figure
 //ITEM 
 .mainFooter__item
 	border-right: 2px solid $theme_gray
-	height      : 160px 
+	height      : 227px 
 
 //Subtítulos 
 .mainFooter__subtitle
@@ -949,7 +958,7 @@ figure
 .mainFooter__information
 	background     : url("../../images/backgrounds/footer.jpg") no-repeat
 	background-size: cover  
-	height         : 227px 
+	/*height         : 227px */
 	padding        : 34px 0 24px
 
 //++Seccion de Desarrollo
@@ -976,15 +985,42 @@ figure
 /* min width */
 @media (max-width: 480px) 
 
+	//SECCIONES GENERALES 
+
+	/* Página wrapper */
+	.pageWrapperSection
+		padding: 25px 0
+
+	//HEADER 
+	.mainHeader
+		position: fixed
 
 	//PAGINA INICIO
-	
+
+	/* Carousel Slider Home */
+	.pageInicio__slider
+		.carousel-inner 
+			.carousel-item
+				height: 312px
+				/* caption o información */
+				.carousel-caption 
+					bottom   : 18%
+					left     : 0
+					margin   : 0 auto 
+					max-width: 280px
+					right    : 0
+					/* título y parrafo */
+					h3
+						font-size: 20px
+					p 
+						font-size: 28px
+
 	/* Seccion de Proyectos */
 	.pageInicio__proyects 
 		.item-proyecto 
 			h2
 				height: auto 
-				
+
 	/*  Galería de Servicios */
 	.pageInicio_gal_services 
 		.item-service 
