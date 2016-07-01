@@ -19,7 +19,7 @@
 				* data-margins = margin_in_pixels , data-dots = true or false
 				*/
 			?>
-			<div id="carousel-clientes" class="pageInicio_clientes__gallery js-carousel-gallery" data-items="1" data-items-responsive="5" data-margins="63" data-dots="false" data-autoplay="true">
+			<div id="carousel-clientes" class="pageInicio_clientes__gallery js-carousel-gallery" data-items="5" data-items-responsive="2" data-margins="63" data-dots="false" data-autoplay="true">
 				<?php /*Extraer los clientes*/ 
 					$args = array(
 						'order'          => 'ASC',

@@ -73,24 +73,31 @@
 						<?php endif; endforeach; ?>
 					</div> <!-- /.section__single_gallery -->
 
-					<!-- Indicadores -->
-					<section class="gallery_indicators text-xs-center">
-						<?php 
-							//variable de control 
-							$k = 0;
-							foreach ( $input_ids_img as $item_img ) : 
-							//Si es diferente de null o tiene elementos
-							if( !empty($item_img) ) : 
-							//Conseguir todos los datos de este item
-							$item = get_post( $item_img  ); 
-						?>  <!-- ITEM -->
-							<a href="#" class="gallery_indicator js-carousel-indicator" data-slider="carousel-proyect" data-to="<?= $k ?>">
-								<img src="<?= $item->guid; ?>" alt="<?= $item->post_title; ?>" class="img-fluid" /></figure>
-							</a>
-						<?php $k++; endif; endforeach; ?>
-					</section> <!-- /.gallery_indicators -->
+					<!-- Flechas -->
+					<!-- Izquierda -->
+					<a href="#" class="arrowCarouselProyect arrowCarouselProyect--left js-prevent-default js-carousel-prev" data-slider="carousel-proyect"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+
+					<!-- Derecha -->
+					<a href="#" class="arrowCarouselProyect arrowCarouselProyect--right js-prevent-default js-carousel-next" data-slider="carousel-proyect"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 
 				</div> <!-- /.relative fin de sección-->
+
+				<!-- Indicadores -->
+				<section class="gallery_indicators text-xs-center">
+					<?php 
+						//variable de control 
+						$k = 0;
+						foreach ( $input_ids_img as $item_img ) : 
+						//Si es diferente de null o tiene elementos
+						if( !empty($item_img) ) : 
+						//Conseguir todos los datos de este item
+						$item = get_post( $item_img  ); 
+					?>  <!-- ITEM -->
+						<a href="#" class="gallery_indicator js-carousel-indicator" data-slider="carousel-proyect" data-to="<?= $k ?>">
+							<img src="<?= $item->guid; ?>" alt="<?= $item->post_title; ?>" class="img-fluid" /></figure>
+						</a>
+					<?php $k++; endif; endforeach; ?>
+				</section> <!-- /.gallery_indicators -->
 
 			</div> <!-- /.col-xs-8 -->
 				

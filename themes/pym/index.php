@@ -24,30 +24,32 @@
 		<div class="row">
 			<?php  
 				$args = array(
-					'order'         => 'DESC',
-					'orderby'       => 'meta_value_num',
-					'meta_key'      => 'mb_fecha_select',
-					'post_per_page' => 6,
-					'post_status'   => 'publish',
-					'post_type'     => 'proyecto',
+					'order'          => 'DESC',
+					'orderby'        => 'meta_value_num',
+					'meta_key'       => 'mb_fecha_select',
+					'posts_per_page' => 6,
+					'post_status'    => 'publish',
+					'post_type'      => 'proyecto',
 				);
-				$proyectos = get_posts( $args );
+				$proyectos = get_posts( $args ); //var_dump($proyectos);
 				if( !empty($proyectos) ) : foreach( $proyectos as $proyecto ) :
 			?> <!-- Articulo -->
-			<article class="item-proyecto col-xs-4">
-				<?php 
-					/* obtener imagen destacada */
-					$feat_img = wp_get_attachment_url( get_post_thumbnail_id( $proyecto->ID ) );
-					$feat_img = !empty($feat_img) ? $feat_img : "https://placeimg.com/980/727/any";
-				?> <!-- Fancybox -->
-				<!--a href="<?= $feat_img; ?>" class="gallery-fancybox"-->
-					<!-- Imagen --> 
-					<a href="<?= get_permalink( $proyecto->ID ); ?>">
-					<figure><img src="<?= $feat_img; ?>" alt="<?= $proyecto->post_title ?>" class="img-fluid" /></figure>
-					</a> <!-- /link -->
-					<!-- Titulo --> <h2 class=""> <?= $proyecto->post_title; ?></h2>
-				<!--/a-->
-			</article> <!-- /.item-proyecto -->
+			<div class="col-xs-12 col-md-4">
+				<article class="item-proyecto">
+					<?php 
+						/* obtener imagen destacada */
+						$feat_img = wp_get_attachment_url( get_post_thumbnail_id( $proyecto->ID ) );
+						$feat_img = !empty($feat_img) ? $feat_img : "https://placeimg.com/980/727/any";
+					?> <!-- Fancybox -->
+					<!--a href="<?= $feat_img; ?>" class="gallery-fancybox"-->
+						<!-- Imagen --> 
+						<a href="<?= get_permalink( $proyecto->ID ); ?>">
+						<figure><img src="<?= $feat_img; ?>" alt="<?= $proyecto->post_title ?>" class="img-fluid" /></figure>
+						</a> <!-- /link -->
+						<!-- Titulo --> <h2 class=""> <?= $proyecto->post_title; ?></h2>
+					<!--/a-->
+				</article> <!-- /.item-proyecto -->
+			</div> <!-- /.col-xs-4 -->
 			<?php endforeach; endif; ?>
 		</div> <!-- /.row -->
 
@@ -83,7 +85,7 @@
 				* data-autoplay= true or false
 				*/
 			?>
-			<div id="carousel-service" class="pageInicio_gal_services js-carousel-gallery" data-items="3" data-items-responsive="3" data-margins="32" data-dots="true" data-autoplay="true">
+			<div id="carousel-service" class="pageInicio_gal_services js-carousel-gallery" data-items="3" data-items-responsive="1" data-margins="32" data-dots="true" data-autoplay="true">
 				<!-- Obtener todas las habitaciones -->
 				<?php  
 					$args = array(
@@ -151,6 +153,9 @@
 			</div> <!-- /.col-xs-12 col-md-6 -->
 
 			<div class="col-xs-12 col-md-6">
+				
+				<!-- Separacion en mobile --> <p class="hidden-sm-up"></p>
+
 				<!-- SECCION TEXTO -->
 				<section class="pageInicio__our__texto">
 
@@ -158,7 +163,7 @@
 
 					<!-- Texto primario nosotros -->
 					<?php if( isset($theme_mod['widget_nosotros_title']) && !empty($theme_mod['widget_nosotros_title']) ) : ?>
-						<h3> <?= $theme_mod['widget_nosotros_title']; ?></h3>
+						<h3 class="text-xs-center text-md-left"> <?= $theme_mod['widget_nosotros_title']; ?></h3>
 					<?php endif; ?>					
 
 					<!-- Texto secundario nosotros -->
@@ -202,7 +207,8 @@ include( locate_template("partials/banner-services.php") );
 <section class="pageInicio__miscelaneo pageWrapperSection">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-8">
+
+			<div class="col-xs-12 col-md-8">
 				<!-- SECCION DE BLOG  -->
 				<section>
 					<!-- Titulo  --> <h2 class="titleCommon__page text-uppercase text-xs-center"> <span class="relative"> <?php _e( "blog" , LANG ); ?> </span> </h2>
@@ -260,10 +266,15 @@ include( locate_template("partials/banner-services.php") );
 
 				</section> <!-- /.section -->
 			</div> <!-- /.col-xs-8 -->
-			<div class="col-xs-4">
+
+			<div class="col-xs-12 col-md-4">
+					
+				<!-- Separador Solo en version mobile -->
+				<p class="hidden-sm-up"></p>
+
 				<!-- SECCION DE FACEBOOK -->
 				<section>
-					<!-- Titulo  --> <h2 class="titleCommon__page text-uppercase"> <span class="relative"> <?php _e( "facebook" , LANG ); ?> </span> </h2>
+					<!-- Titulo  --> <h2 class="titleCommon__page text-uppercase text-xs-center"> <span class="relative"> <?php _e( "facebook" , LANG ); ?> </span> </h2>
 
 					<!-- Contenedor facebook -->
 					<?php

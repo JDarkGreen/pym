@@ -22,7 +22,7 @@
 				<!-- SECCIÓN DE DATOS  -->
 				<section class="pageContact__data">
 
-					<!-- Titulo  --> <h2 class="titleCommon__page text-uppercase"> <span class="relative"> <?php _e( "atención al cliente" , LANG ); ?> </span> </h2>
+					<!-- Titulo  --> <h2 class="titleCommon__page titleCommon__page--left text-uppercase"> <span class="relative"> <?php _e( "atención al cliente" , LANG ); ?> </span> </h2>
 
 					<!-- Lista de Datos -->
 					<ul class="mainFooter__list-data">
@@ -60,7 +60,7 @@
 				<!-- SECCIÓN DE REDES SOCIALES  -->
 				<section class="pageContact__social">
 
-					<!-- Titulo  --> <h2 class="titleCommon__page text-uppercase"> <span class="relative"> <?php _e( "redes sociales" , LANG ); ?> </span> </h2>
+					<!-- Titulo  --> <h2 class="titleCommon__page titleCommon__page--left text-uppercase"> <span class="relative"> <?php _e( "redes sociales" , LANG ); ?> </span> </h2>
 
 					<!-- Lista de Redes Sociales -->
 					<ul class="social-links social-links--gray">
@@ -89,7 +89,7 @@
 				<!-- SECCIÓN DE REDES SOCIALES  -->
 				<section class="pageContact__formulary">
 
-					<!-- Titulo  --> <h2 class="titleCommon__page text-uppercase"> <span class="relative"> <?php _e( "llena nuestro formulario" , LANG ); ?> </span> </h2>
+					<!-- Titulo  --> <h2 class="titleCommon__page titleCommon__page--left text-uppercase"> <span class="relative"> <?php _e( "llena nuestro formulario" , LANG ); ?> </span> </h2>
 
 					<!-- Limpiar floats --><div class="clearfix"></div>
 
@@ -117,12 +117,12 @@
 						<!-- Asunto -->
 						<div class="pageContacto__form__group">
 							<label for="input_subject" class="sr-only"></label>
-							<input type="text" id="input_subject" name="input_subject" placeholder="<?php _e( 'Nombres', LANG ); ?>" required />
+							<input type="text" id="input_subject" name="input_subject" placeholder="<?php _e( 'Asunto a tratar', LANG ); ?>" required />
 						</div> <!-- /.pageContacto__form__group -->
 
 						<!-- Texto -->
 						<div class="pageContacto__form__group">
-							<label for="input_email" class="sr-only"></label>
+							<label for="input_consulta" class="sr-only"></label>
 							<textarea name="input_consulta" id="input_consulta" placeholder="<?php _e( 'Su Mensaje', LANG ); ?>" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Necesitas más de 20 caracteres" data-parsley-validation-threshold="10"></textarea>
 						</div> <!-- /.pageContacto__form__group -->
 
@@ -147,7 +147,7 @@
 			
 			<div class="container"> 
 
-			<!-- Titulo  --> <h2 class="titleCommon__page text-uppercase"> <span class="relative"> <?php _e( "mapa" , LANG ); ?> </span> </h2>
+			<!-- Titulo  --> <h2 class="titleCommon__page titleCommon__page--left text-uppercase"> <span class="relative"> <?php _e( "mapa" , LANG ); ?> </span> </h2>
 			
 			<?php if( isset($theme_mod['contact_mapa']) && !empty($theme_mod['contact_mapa']) ) : ?>
 			<div id="canvas-map"></div>

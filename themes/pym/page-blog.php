@@ -44,7 +44,7 @@
 
 				<article class="pageWrapper__article pageCommon_preview-post">
 
-					<!-- Titulo  --> <h2 class="titleCommon__page text-uppercase text-xs-left"> <span class="relative"> <?php _e( "blog" , LANG ); ?> </span> </h2> 
+					<!-- Titulo  --> <h2 class="titleCommon__page titleCommon__page--left text-uppercase text-xs-left"> <span class="relative"> <?php _e( "blog" , LANG ); ?> </span> </h2> 
 
 					<!-- Items de Artículos -->
 					<div class="row">

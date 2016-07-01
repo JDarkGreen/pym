@@ -232,15 +232,13 @@ figure
 			margin    : 0 auto
 			position  : absolute
 			right     : 0
-			width     : 124px
+			width     : 40px
 
 /* variacion a izquerda - */
 .titleCommon__page--left
 	span 
 		&:before
 			margin: 0
-
-
 
 //IMAGEN NOT BLUR ( NO DIFUMINADA )
 .imgNotBlur
@@ -308,7 +306,6 @@ figure
 		margin         : 0 5px 
 		text-decoration: none 
 		width          : 23.2%
-
 
 //LINEA SEPARADORA
 #separator-line
@@ -558,7 +555,9 @@ figure
 		h2 
 			color    : black
 			font-size: 16px
-			margin   : 0  
+			height   : 52px
+			margin   : 0 
+			overflow : hidden 
 		//hover
 		&:hover 
 			img 
@@ -823,6 +822,25 @@ figure
 			background: rgba( 0,0,0, .5 )
 			max-width : 621px
 
+/* Flechas de carousel detalle de proyecto */
+.arrowCarouselProyect
+	color          : gray 
+	font-size      : 40px
+	line-height    : 1em 
+	margin         : -20px 0 0
+	position       : absolute
+	text-decoration: none 
+	top            : 50%
+	z-index        : 9999
+	&:hover , &:focus
+		color: gray
+/* variaciones izquierda y derecha */
+.arrowCarouselProyect--left
+	left: 10px
+.arrowCarouselProyect--right
+	right: 10px
+
+
 /***************************************************************************************/
 /**--  PAGINA CLIENTES   -------------------------------------------------------------**/
 /***************************************************************************************/
@@ -954,3 +972,22 @@ figure
 /************************************************************************************/
 /*-- MEDIA QUERIES -----------------------------------------------------------------*/
 /************************************************************************************/
+
+/* min width */
+@media (max-width: 480px) 
+
+
+	//PAGINA INICIO
+	
+	/* Seccion de Proyectos */
+	.pageInicio__proyects 
+		.item-proyecto 
+			h2
+				height: auto 
+				
+	/*  Galería de Servicios */
+	.pageInicio_gal_services 
+		.item-service 
+			h3
+				height    : 80px 
+				max-height: none 

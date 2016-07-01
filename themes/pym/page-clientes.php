@@ -21,13 +21,15 @@
 		<section class="pageClientes">
 			<!-- Titulo de seccion -->
 			<h3 class="text-uppercase text-xs-center"> <?php _e( "clientes" , LANG );  ?></h3>
+
+			<?php /*
 			<!-- Contenedor de clientes -->
 			<section class="pageClientes__content">
 				<div class="row">
 					<?php  
 						/**
 						* Extraer a todos los clientes
-						*/
+						
 						$args = array(
 							'order'          => 'ASC',
 							'orderby'        => 'name',
@@ -44,8 +46,29 @@
 					<?php endforeach; ?>
 				</div> <!-- /.row -->
 			</section> <!-- /.pageClientes__content -->
+			*/  ?>
+			
+			<section class="pageClientes__content">
 
-		</section> <!-- /.pageNosotros__content -->	
+				<!-- Obtener el texto del contenido de la página y luego separar linea por linea -->
+				<?php  
+					if( !empty( $post->post_content ) ) : 
+
+						$texto    = $post->post_content;
+						$clientes = explode( "," , $texto );
+
+						foreach( $clientes as $cliente ) :
+				?>
+				<div class="col-xs-6 text-xs-center text-capitalize">
+					<p><?php _e( $cliente , LANG ); ?></p>
+				</div> <!-- /.col-xs-6 -->
+				<?php endforeach; endif; //fin condicional ?>
+
+				<!-- Limpiar Float --> <div class="clearfix"></div>
+
+			</section>  <!-- /.pageClientes__content -->
+
+		</section> <!-- /.pageClientes -->	
 
 	</div> <!-- /.container -->
 </main> <!-- /.pageWrapper -->
