@@ -296,7 +296,7 @@ function cd_meta_box_url_video_save( $post_id )
 //Este metabox al darle check agrega una clase en el banner Home
 //que permite alinear contenido a la izquierda o derecha respectivamente
 
-add_action( 'add_meta_boxes', 'cd_banner_text_add' );
+/*add_action( 'add_meta_boxes', 'cd_banner_text_add' );
 function cd_banner_text_add()
 {
     add_meta_box( 'mb-text-banner', 'Alinear Contenido de Banner', 'cd_banner_text_cb', 'banner', 'side', 'high' );
@@ -333,11 +333,11 @@ function cd_banner_text_save( $post_id )
     // This is purely my personal preference for saving check-boxes
     $chk = isset( $_POST['banner_text_check'] ) && $_POST['banner_text_check'] ? 'on' : 'off';
     update_post_meta( $post_id, 'banner_text_check', $chk );
-}
+} */
 
 
 /*|-------------------------------------------------------------------------|*/
-/*|------------ METABOX EDITOR WYSIWYG PARA CADA SERVICIO  -----------------|*/
+/*|---------- METABOX EDITOR WYSIWYG PARA CONTENIDO EXTRA  -----------------|*/
 /*|-------------------------------------------------------------------------|*/
 
 //Este metabox permite agregar un editor de texto para informacion extra
@@ -366,6 +366,157 @@ function custom_theme_save_postdata( $post_id ){
 
 //Save the Data
 add_action( 'save_post', 'custom_theme_save_postdata' );
+
+/*|-------------------------------------------------------------------------|*/
+/*|---------- METABOX AGREGAR CLIENTES A LOS PROYECTOS     -----------------|*/
+/*|-------------------------------------------------------------------------|*/
+
+/*
+
+add_action( 'add_meta_boxes', 'cd_meta_box_clients' );
+
+//llamar funcion 
+function cd_meta_box_clients()
+{	
+	//solo en testimonios
+	add_meta_box( 'mb-client', 'Cliente Asociado a Proyecto: ', 'cd_meta_clients_cb', array('proyecto') , 'side', 'high' );
+}
+
+//customizar box
+function cd_meta_clients_cb( $post )
+{
+	// $post is already set, and contains an object: the WordPress post
+    global $post;
+
+	$values   = get_post_custom( $post->ID );
+	$selected = isset( $values['mb_clients_select'] ) ? $values['mb_clients_select'][0] : '';
+
+	// We'll use this nonce field later on when saving.
+    wp_nonce_field( 'my_meta_box_nonce', 'meta_box_nonce' );
+
+    ?>
+    <p>
+        <label for="mb_clients_select">Selecciona el Cliente Asociado de este proyecto : </label>
+
+        <select name="mb_clients_select" id="mb_clients_select">
+        	<option value="none" <?php selected( $selected , 'none' ); ?> > No asociado </option>
+	        <?php // Obtener todos los clientes publicados 
+	        	$args = array(
+					'post_type'      => 'cliente',
+					'posts_per_type' => -1,
+					'post_status'    => 'publish',
+					'order'          => 'ASC',
+					'orderby'        => 'name',
+	        	);
+	        	$clientes = get_posts( $args );
+	        	foreach( $clientes as $cliente ) :
+	        ?>
+	    	<option value="<?= $cliente->post_title ?>" <?php selected( $selected, $cliente->post_title ); ?> > <?= $cliente->post_title; ?> </option>
+	    	<?php endforeach; ?>
+        </select> <!-- end of select  -->
+    </p>
+    <?php    
+}
+
+//guardar la data
+add_action( 'save_post', 'cd_meta_box_clients_save' );
+
+function cd_meta_box_clients_save( $post_id )
+{
+    // Bail if we're doing an auto save
+    if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+     
+    // if our nonce isn't there, or we can't verify it, bail
+    if( !isset( $_POST['meta_box_nonce'] ) || !wp_verify_nonce( $_POST['meta_box_nonce'], 'my_meta_box_nonce' ) ) return;
+     
+    // if our current user can't edit this post, bail
+    if( !current_user_can( 'edit_post' ) ) return;
+     
+    // now we can actually save the data
+    $allowed = array( 
+        'a' => array( // on allow a tags
+            'href' => array() // and those anchors can only have href attribute
+        )
+    );
+     
+    // Make sure your data is set before trying to save it
+  	if( isset( $_POST['mb_clients_select'] ) )
+        update_post_meta( $post_id, 'mb_clients_select', esc_attr( $_POST['mb_clients_select'] ) );
+}
+
+*/
+
+/*|-------------------------------------------------------------------------|*/
+/*|---------- METABOX AGREGAR CLIENTES A LOS PROYECTOS     -----------------|*/
+/*|-------------------------------------------------------------------------|*/
+
+add_action( 'add_meta_boxes', 'cd_meta_box_fecha' );
+
+//llamar funcion 
+function cd_meta_box_fecha()
+{	
+	//
+	add_meta_box( 'mb-fecha', 'Año Asociado a este Item: ', 'cd_meta_fecha_cb', array('proyecto') , 'side', 'high' );
+}
+
+//customizar box
+function cd_meta_fecha_cb( $post )
+{
+	// $post is already set, and contains an object: the WordPress post
+    global $post;
+
+	$values   = get_post_custom( $post->ID );
+	$selected = isset( $values['mb_fecha_select'] ) ? $values['mb_fecha_select'][0] : '';
+
+	// We'll use this nonce field later on when saving.
+    wp_nonce_field( 'my_meta_box_nonce', 'meta_box_nonce' );
+
+    ?>
+    <p>
+        <label for="mb_fecha_select">Selecciona la fecha asociada a este proyecto : </label>
+
+        <select name="mb_fecha_select" id="mb_fecha_select">
+        	<option value="<?= date("Y") ?>" <?php selected( $selected , date("Y") ); ?> > 
+        		<?= date("Y") ?> 
+        	</option>
+	        <?php // Hacer un for de años 
+	        	for( $anio = 1980 ; $anio<= 2099 ; $anio++ ) {
+	        ?>
+	    	<option value="<?= $anio ?>" <?php selected( $selected, $anio ); ?> > 
+	    		<?= $anio ?> 
+	    	</option>
+	    	<?php }; /* end for */?>
+        </select> <!-- end of select  -->
+    </p>
+    <?php    
+}
+
+//guardar la data
+add_action( 'save_post', 'cd_meta_box_clients_save' );
+
+function cd_meta_box_clients_save( $post_id )
+{
+    // Bail if we're doing an auto save
+    if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+     
+    // if our nonce isn't there, or we can't verify it, bail
+    if( !isset( $_POST['meta_box_nonce'] ) || !wp_verify_nonce( $_POST['meta_box_nonce'], 'my_meta_box_nonce' ) ) return;
+     
+    // if our current user can't edit this post, bail
+    if( !current_user_can( 'edit_post' ) ) return;
+     
+    // now we can actually save the data
+    $allowed = array( 
+        'a' => array( // on allow a tags
+            'href' => array() // and those anchors can only have href attribute
+        )
+    );
+     
+    // Make sure your data is set before trying to save it
+  	if( isset( $_POST['mb_fecha_select'] ) )
+        update_post_meta( $post_id, 'mb_fecha_select', esc_attr( $_POST['mb_fecha_select'] ) );
+}
+
 
 
 ?>

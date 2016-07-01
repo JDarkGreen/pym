@@ -1,5 +1,5 @@
 <?php /*Obtener página de Servicios*/ 
-	$page_servicios = get_page_by_path('contacto'); 
+	$page_servicios = get_page_by_path('servicios'); 
 ?>
 
 <!-- Sección Común banner Servicios -->

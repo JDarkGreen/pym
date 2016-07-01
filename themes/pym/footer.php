@@ -100,7 +100,7 @@
 		<!-- Seccion de Desarrollo -->
 		<section class="mainFooter__develop">
 			<div class="container">
-				<p class="pull-xs-right"> &copy; <?= date("Y"); ?> CONSTRUCTORA INMOBILIARIA P&M S.A.C. Derechos reservados Design by <a href="#">INGENIOART</a></p>
+				<p class="pull-xs-right"> &copy; <?= date("Y"); ?> CONSTRUCTORA INMOBILIARIA P&M S.A.C. Derechos reservados Design by <a target="_blank" href="http://www.ingenioart.com/">INGENIOART</a></p>
 			</div> <!-- /.container -->
 		</section> <!-- /.mainFooter__develop -->
 

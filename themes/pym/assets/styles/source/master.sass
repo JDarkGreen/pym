@@ -219,6 +219,7 @@ figure
 	margin     : 0 auto 25px
 	padding    : 0 0 5px  
 	span 
+		display    : block 
 		font-family: "Roboto" , sans-serif
 		font-weight: 700 
 		margin     : 0
@@ -232,6 +233,14 @@ figure
 			position  : absolute
 			right     : 0
 			width     : 124px
+
+/* variacion a izquerda - */
+.titleCommon__page--left
+	span 
+		&:before
+			margin: 0
+
+
 
 //IMAGEN NOT BLUR ( NO DIFUMINADA )
 .imgNotBlur
@@ -263,10 +272,11 @@ figure
 		a 
 			color: rgba( 255,255,255,.4)
 
-//++Variacion de redes sociales a rojo
-.social-links--red
+//++Variacion de redes sociales a gris
+.social-links--gray
 	li 
 		a 
+			color: rgba( 0,0,0,.6)
 
 //BOTÓN HACIA ARRIBA 
 #arrow-up-page
@@ -291,13 +301,14 @@ figure
 
 //Indicadores de Galería
 .gallery_indicators
-	margin: 0 auto 30px 
+	margin: 0 auto
 	//Indicador
 	.gallery_indicator
-		display        : inline-block
-		margin         : 0 4.5px 
-		max-width      : 131px 
+		display        : inline-block 
+		margin         : 0 5px 
 		text-decoration: none 
+		width          : 23.2%
+
 
 //LINEA SEPARADORA
 #separator-line
@@ -391,6 +402,25 @@ figure
 .pageWrapperSection
 	padding: 50px 0
 
+//PAGINADOR GENERAL DE PAGINA
+.pagePaginator
+	font-family: "Roboto" , sans-serif
+	/* Párrafo y Link */
+	p , a 
+		display: inline-block
+		margin : 0 3px 
+	/* Párrafo */
+	p
+		color: $theme_red
+	/* Link */
+	a 
+		color: black 
+		+transition( all 500ms ease-in )
+		//hover 
+		&:hover , &.active , &.current 
+			color: $theme_red
+
+
 /***************************************************************************************/
 /**--  HEADER   ----------------------------------------------------------------------**/
 /***************************************************************************************/
@@ -400,7 +430,7 @@ figure
 	background : $theme_red
 	font-family: "Roboto", sans-serif
 	left       : 0 
-	position   : fixed
+	//position   : fixed
 	right      : 0
 	z-index    : 999
 
@@ -457,7 +487,7 @@ figure
 /***************************************************************************************/
 
 #sb-site
-	padding: 128px 0 0 0
+	//padding: 128px 0 0 0
 
 /***************************************************************************************/
 /**--  WRAPPER GENERAL ---------------------------------------------------------------**/
@@ -564,6 +594,9 @@ figure
 	//Articulos
 	.item-service
 		font-family: "Roboto" , sans-serif
+		//link
+		a 
+			text-decoration: none  
 		//Imagen
 		figure 
 			margin    : 0 auto 22px 
@@ -613,10 +646,11 @@ figure
 
 // SECCION MISCELANEO
 .pageInicio__miscelaneo
-/* Slider de Post */
-.pageInicio_slider_post
+
+/* PREVIEWS DE POST */
+.pageCommon_preview-post
 	/* Artículos */
-	.item-u_post
+	.item-preview-post
 		font-family: "Roboto", sans-serif
 		/* Imagen */
 		figure 
@@ -642,6 +676,9 @@ figure
 			font-size  : 20px 
 			font-weight: 600
 			margin     : 0 auto 15px 
+			/* link */
+			a 
+				color: $theme_red
 		/* Parrafp */
 		p 
 			line-height: 1.2em 
@@ -659,8 +696,9 @@ figure
 .pageContact__map
 	margin: 70px auto 0
 
+//CANVAS DE MAPA
 #canvas-map
-	height: 445px 
+	height: 337px 
 	width : 100%
 
 /***************************************************************************************/
@@ -743,6 +781,117 @@ figure
 		font-size      : 24px 
 		text-decoration: none 
 
+/***************************************************************************************/
+/**--  PAGINA PROYECTOS  -------------------------------------------------------------**/
+/***************************************************************************************/
+
+/* Contenedor Principal */
+.pageProyectos__content
+	font-family: "Roboto", sans-serif 
+	
+/* Articulo de proyecto */
+.articleProyectoItem
+	margin: 0 auto 40px
+	/* Imagen de articulo */
+	figure 
+		margin  : 0 auto 15px 
+		overflow: hidden
+		img 	
+			+transition( all 500ms ease-in )
+	/* Titulo o nombre de proyecto */
+	h3
+		color    : black  
+		font-size: 18px
+		height   : 38px
+		margin   : 0 auto 15px 
+		overflow : hidden
+		a 
+			color: black 
+	&:hover 
+		img 
+			+scale( 1.2 )   
+
+/* Carousel para Detalles de proyecto */
+.pageProyectos__carousel
+	/* ocultar los dots */
+	.owl-controls
+		display: none 
+	/* Item de Proyecto */
+	.item-proyecto
+		/* Imagen */
+		figure 
+			background: rgba( 0,0,0, .5 )
+			max-width : 621px
+
+/***************************************************************************************/
+/**--  PAGINA CLIENTES   -------------------------------------------------------------**/
+/***************************************************************************************/
+
+/* Contenedor */
+.pageClientes
+	font-family: "Roboto" , sans-serif
+	/* Titulo */
+	h3
+		background : $theme_red
+		color      : white 
+		font-size  : 20px
+		line-height: 20px
+		margin     : 0 auto 
+		padding    : 13px 0
+
+/* Contenedor de Clientes */
+.pageClientes__content
+	background: $theme_gray_claro
+	color     : black 
+	padding   : 55px 0 
+	/* parrafo */
+	p 
+		font-weight: 600
+
+/***************************************************************************************/
+/**--  PAGINA BLOG   -------------------------------------------------------------**/
+/***************************************************************************************/
+
+/* Contenedor de articulos */
+.pageWrapper__article
+	/* Item de articulo */
+	.item-preview-post
+		margin: 0 auto 55px
+		//Titulo
+		h2
+			color: $theme_red
+		h3 
+			height  : 44px
+			overflow: hidden
+
+/***************************************************************************************/
+/**--  PAGINA CONTACTO   -------------------------------------------------------------**/
+/***************************************************************************************/
+
+//SECCION DE DATOS 
+.pageContact__data
+	margin: 0 auto 60px
+
+//+Formulario de Contacto
+.pageContacto__form
+	margin: 40px auto 0
+
+/* AGrupacion input y textarea */
+.pageContacto__form__group
+	margin: 0 auto 15px 
+	/* inputs y textareas internos */
+	input, textarea
+		+border-radius( 4px ) 
+		border     : 1px solid $theme_gray_claro
+		color      : $theme_gray
+		line-height: 1.2em 
+		outline    : 0 
+		padding    : 7px
+		width      : 100%
+	/* solo texarea */
+	textarea
+		height    : 138px 
+		max-height: 138px
 
 /***************************************************************************************/
 /**--  MAIN FOOTER  ------------------------------------------------------------------**/
@@ -774,6 +923,9 @@ figure
 			height: 20px 
 			margin: 0 6px 0 -30px
 			width : 20px 
+		/* texto en rojo */
+		.text-red 
+			color: $theme_red
 
 //++Seccion de Informacion
 .mainFooter__information
@@ -793,7 +945,7 @@ figure
 		text-decoration: none
 	//parrafo
 	p 
-		font-size: 15px  
+		font-size: 12px  
 		margin   : 0 auto 
 
 

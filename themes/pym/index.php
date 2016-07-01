@@ -11,8 +11,6 @@
 <!-- Separador Comun -->
 <div id="separator-line"></div>
 
-
-
 <?php 
 /*
 * Seccion Proyectos
@@ -27,7 +25,8 @@
 			<?php  
 				$args = array(
 					'order'         => 'DESC',
-					'orderby'       => 'date',
+					'orderby'       => 'meta_value_num',
+					'meta_key'      => 'mb_fecha_select',
 					'post_per_page' => 6,
 					'post_status'   => 'publish',
 					'post_type'     => 'proyecto',
@@ -42,7 +41,10 @@
 					$feat_img = !empty($feat_img) ? $feat_img : "https://placeimg.com/980/727/any";
 				?> <!-- Fancybox -->
 				<!--a href="<?= $feat_img; ?>" class="gallery-fancybox"-->
-					<!-- Imagen --> <figure><img src="<?= $feat_img; ?>" alt="<?= $proyecto->post_title ?>" class="img-fluid" /></figure>
+					<!-- Imagen --> 
+					<a href="<?= get_permalink( $proyecto->ID ); ?>">
+					<figure><img src="<?= $feat_img; ?>" alt="<?= $proyecto->post_title ?>" class="img-fluid" /></figure>
+					</a> <!-- /link -->
 					<!-- Titulo --> <h2 class=""> <?= $proyecto->post_title; ?></h2>
 				<!--/a-->
 			</article> <!-- /.item-proyecto -->
@@ -50,7 +52,11 @@
 		</div> <!-- /.row -->
 
 		<!-- Boton Comun ver más -->
-		<a href="" class="pull-xs-right btnCommon__show-more text-uppercase"><?php _e( "ver más" , LANG ) ?></a>
+		<?php  
+			/* Obtener página de proyectos */
+			$page_proyectos = get_page_by_path("proyectos");
+		?>	
+		<a href="<?= get_permalink( $page_proyectos->ID ); ?>" class="pull-xs-right btnCommon__show-more text-uppercase"><?php _e( "ver más" , LANG ) ?></a>
 		<!-- Limpiar Floats --> <div class="clearfix"></div>
 
 	</div> <!-- /.container -->
@@ -74,9 +80,10 @@
 				*  Attributos disponibles 
 				* data-items = number , data-items-responsive = number_mobile ,
 				* data-margins = margin_in_pixels , data-dots = true or false
+				* data-autoplay= true or false
 				*/
 			?>
-			<div id="carousel-service" class="pageInicio_gal_services js-carousel-gallery" data-items="3" data-items-responsive="3" data-margins="32" data-dots="true">
+			<div id="carousel-service" class="pageInicio_gal_services js-carousel-gallery" data-items="3" data-items-responsive="3" data-margins="32" data-dots="true" data-autoplay="true">
 				<!-- Obtener todas las habitaciones -->
 				<?php  
 					$args = array(
@@ -90,19 +97,31 @@
 					foreach( $services as $service ):
 				?> <!-- Artículo -->
 					<article class="item-service text-xs-left">
+						<!-- Link -->
+						<a href="<?= get_permalink( $service->ID ); ?>">
 						<figure>
 							<?php if( has_post_thumbnail( $service->ID) ) : ?>
 							<?= get_the_post_thumbnail( $service->ID , 'full', array('class'=>'img-fluid') ); ?>
 							<?php endif; ?>
 						</figure>
-						<!-- titulo --> <h3 class="text-uppercase"> <span class="relative"> <?php _e( $service->post_title , LANG ); ?> </span> </h3>
+						</a> <!-- /link -->
+
+						<!-- titulo --> 
+						<a href="<?= get_permalink( $service->ID ); ?>">
+						<h3 class="text-uppercase"> <span class="relative"> <?php _e( $service->post_title , LANG ); ?> </span> </h3>
+						</a> <!-- /en link -->
+
 						<!-- Extracto --> <div class="text-justify"> <?= !empty($service->post_content) ? apply_filters( 'the_content' , wp_trim_words( $service->post_content , 20 , '' ) ) : apply_filters("the_content" , "Actualizando Contenido..." ); ?></div>
 					</article> <!-- /.item-service -->
 				<?php endforeach; ?>
 			</div> <!-- /.section__rooms_gallery -->
 
 			<!-- Boton Comun ver más -->
-			<a href="" class="pull-xs-right btnCommon__show-more text-uppercase"><?php _e( "ver más" , LANG ) ?></a>
+			<?php  
+				/* Obtener página de servicios */
+				$page_servicios = get_page_by_path("servicios");
+			?>
+			<a href="<?= get_permalink( $page_servicios->ID ); ?>" class="pull-xs-right btnCommon__show-more text-uppercase"><?php _e( "ver más" , LANG ) ?></a>
 			<!-- Limpiar Floats --> <div class="clearfix"></div>
 
 
@@ -134,6 +153,7 @@
 			<div class="col-xs-12 col-md-6">
 				<!-- SECCION TEXTO -->
 				<section class="pageInicio__our__texto">
+
 					<!-- Titulo  --> <h2 class="titleCommon__page text-uppercase text-xs-center"> <span class="relative"> <?php _e( "nosotros" , LANG ); ?> </span> </h2>
 
 					<!-- Texto primario nosotros -->
@@ -147,7 +167,11 @@
 					<?php endif; ?>
 
 					<!-- Boton Comun ver más -->
-					<a href="" class="pull-xs-right btnCommon__show-more text-uppercase"><?php _e( "ver más" , LANG ) ?></a>
+					<?php  
+						/* Obtener página de servicios */
+						$page_nosotros = get_page_by_path("nosotros");
+					?>
+					<a href="<?= get_permalink( $page_nosotros->ID ); ?>" class="pull-xs-right btnCommon__show-more text-uppercase"><?php _e( "ver más" , LANG ) ?></a>
 					<!-- Limpiar Floats --> <div class="clearfix"></div>
 
 					<!-- Incluir SECCION PDF CATALOGO -->
@@ -193,7 +217,7 @@ include( locate_template("partials/banner-services.php") );
 							* data-margins = margin_in_pixels , data-dots = true or false
 							*/
 						?>
-						<div id="carousel-service" class="pageInicio_slider_post js-carousel-gallery" data-items="2" data-items-responsive="2" data-margins="20" data-dots="true">
+						<div id="carousel-service" class="pageCommon_preview-post js-carousel-gallery" data-items="2" data-items-responsive="2" data-margins="20" data-dots="true" data-autoplay="true">
 							<!-- Obtener todas las habitaciones -->
 							<?php  
 								$args = array(
@@ -206,19 +230,26 @@ include( locate_template("partials/banner-services.php") );
 								$ultimos_post = get_posts( $args );
 								foreach( $ultimos_post as $u_post ):
 							?> <!-- Artículo -->
-								<article class="item-u_post text-xs-left">
-									<!-- Imagen -->
-									<figure class="relative">
-										<?php if( has_post_thumbnail( $u_post->ID) ) : ?>
-										<?= get_the_post_thumbnail( $u_post->ID , 'full', array('class'=>'img-fluid') ); ?>
-										<?php endif; ?>
-										<!-- Fecha -->
-										<figcaption class="text-uppercase text-xs-center container-flex align-content">
-											<?=  get_the_date( 'd M',$u_post->ID ); ?>
-										</figcaption>
-									</figure>
+								<article class="item-preview-post text-xs-left">
+									<!-- Link -->
+									<a href="<?= get_permalink( $u_post->ID ); ?>">
+										<!-- Imagen -->
+										<figure class="relative">
+											<?php if( has_post_thumbnail( $u_post->ID) ) : ?>
+											<?= get_the_post_thumbnail( $u_post->ID , 'full', array('class'=>'img-fluid') ); ?>
+											<?php endif; ?>
+											<!-- Fecha -->
+											<figcaption class="text-uppercase text-xs-center container-flex align-content">
+												<?=  get_the_date( 'd M',$u_post->ID ); ?>
+											</figcaption>
+										</figure>
+									</a> <!-- /link -->	
 
-									<!-- titulo --> <h3 class=""> <?php _e( $u_post->post_title , LANG ); ?> </h3>
+									<!-- titulo --> <h3 class=""> 
+										<a href="<?= get_permalink( $u_post->ID ); ?>">
+											<?php _e( $u_post->post_title , LANG ); ?> 
+										</a> <!-- / -->
+									</h3>
 
 									<!-- Extracto --> <div class="text-justify"> <?= !empty($u_post->post_content) ? apply_filters( 'the_content' , wp_trim_words( $u_post->post_content , 20 , '' ) ) : apply_filters("the_content" , "Actualizando Contenido..." ); ?></div>
 								</article> <!-- /.item-u_post -->

@@ -82,7 +82,7 @@ function create_category_taxonomy() {
     'rewrite'          => array( 'slug' => 'image-category' ),
   ));   
 
-  /* categorias proyectos */
+  /* categorias proyectos 
   $labels4 = array(
     'name'             => __( 'Categoría Proyecto'),
     'singular_name'    => __( 'Categoría Proyecto'),
@@ -105,7 +105,7 @@ function create_category_taxonomy() {
     'show_admin_column'=> true,
     'query_var'        => true,
     'rewrite'          => array( 'slug' => 'proyecto-category' ),
-  ));  
+  )); */ 
 
 
 }

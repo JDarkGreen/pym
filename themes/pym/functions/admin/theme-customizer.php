@@ -246,7 +246,7 @@ function theme_customize_register($wp_customize) {
 		'priority' => 40
 	));
 	
-	//textarea titulo
+	//textarea titulo acerca de la empresa
 	$wp_customize->add_setting('theme_custom_settings[widget_nosotros_title]', array(
 		'default' => '',
 		'type' => 'theme_mod'
@@ -259,7 +259,7 @@ function theme_customize_register($wp_customize) {
 		'type'     => 'textarea'
 	));	
 
-	//textarea titulo
+	//textarea subtitulo acerca de la empresa
 	$wp_customize->add_setting('theme_custom_settings[widget_nosotros_subtitle]', array(
 		'default' => '',
 		'type' => 'theme_mod'
@@ -294,7 +294,40 @@ function theme_customize_register($wp_customize) {
 		'label'    => __('Subir PDF de Catálogo', LANG),
 		'section'  => 'theme_widget_nosotros',
 		'settings' => 'theme_custom_settings[widget_nosotros_pdf]',
-	)));	
+	)));
+
+	//Customizar SECCION APTITUDES
+	$wp_customize->add_section('theme_widget_aptitudes', array(
+		'title' => __('Sección Aptitudes ( Misión - Visión )', LANG),
+		'description' => __('Personalizar textos Aptitudes', LANG),
+		'priority' => 40
+	));
+	
+	//textarea MISION DE LA EMPRESA
+	$wp_customize->add_setting('theme_custom_settings[text_mision]', array(
+		'default' => '',
+		'type' => 'theme_mod'
+	));
+	
+	$wp_customize->add_control('theme_custom_settings[text_mision]', array(
+		'label'    => __('Texto Misión de La Empresa:', LANG),
+		'section'  => 'theme_widget_aptitudes',
+		'settings' => 'theme_custom_settings[text_mision]',
+		'type'     => 'textarea'
+	));	
+
+	//textarea VISION DE LA EMPRESA
+	$wp_customize->add_setting('theme_custom_settings[text_vision]', array(
+		'default' => '',
+		'type' => 'theme_mod'
+	));
+	
+	$wp_customize->add_control('theme_custom_settings[text_vision]', array(
+		'label'    => __('Texto Visión de La Empresa:', LANG),
+		'section'  => 'theme_widget_aptitudes',
+		'settings' => 'theme_custom_settings[text_vision]',
+		'type'     => 'textarea'
+	));	
 
 }	
 ?>

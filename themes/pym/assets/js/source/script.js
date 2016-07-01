@@ -96,8 +96,11 @@ var j = jQuery.noConflict();
 				/* Valor de Márgenes */
 				var Margins = current.attr('data-margins') !== null && typeof(current.attr('data-margins') ) !== "undefined"  ? current.attr('data-margins') : 10;	
 
+				/* Habilitar autoplay */
+				var Autoplay = current.attr('data-autoplay') !== null && typeof( current.attr('data-autoplay') ) !== "undefined"  && current.attr('data-autoplay') !== "false" ? true : false;
+
 				/* Habilitar dots */
-				var Dot = current.attr('data-dots') !== null && typeof(current.attr('data-dots') ) !== "undefined" ? current.attr('data-dots') : null;
+				var Dot = current.attr('data-dots') !== null && typeof( current.attr('data-dots') ) !== "undefined" && current.attr('data-dots') !== "false" ? true : false;
 
 				/* Generar el carousel */
 				current.owlCarousel({
@@ -106,13 +109,13 @@ var j = jQuery.noConflict();
 					loop           : true,
 					margin         : parseInt( Margins ),
 					nav            : false,
-					autoplay       : true,
+					autoplay       : Autoplay,
 					responsiveClass: true,
-					mouseDrag      : false,
+					mouseDrag      : true,
 					autoplayTimeout: 2500,
 					fluidSpeed     : 2000,
 					smartSpeed     : 2000,
-					dots           : Boolean( Dot ),
+					dots           : Dot,
 					responsive:{
 				      	640:{
 				            items: parseInt( Itemsresponsive )

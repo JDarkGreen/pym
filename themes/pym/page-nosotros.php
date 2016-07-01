@@ -20,13 +20,11 @@
 
 				<div class="col-xs-12 col-md-6">
 					<section>
-						<!-- Titulo  --> <h2 class="text-uppercase text-xs-left"> <span class="relative"> <?php _e( "quienes somos" , LANG ); ?> </span> </h2>
 
 						<!-- Contenido 1 Descripcion -->
 						<div class="text-justify">
 							<?= apply_filters('the_content' , $post->post_content ); ?>
 						</div> <!-- /.text-justify -->
-
 
 					</section> <!-- /section -->
 				</div> <!-- /.col-xs-12 col-md-6 -->
@@ -40,11 +38,12 @@
 							/*
 							*  Attributos disponibles 
 							* data-items = number , data-items-responsive = number_mobile ,
-							* data-margins = margin_in_pixels , data-dots = true or false
+							* data-margins = margin_in_pixels , data-dots = true or false 
+							*data autoplay = true or false
 							*/
 						?>
 
-						<div id="carousel-nosotros" class="section__single_gallery js-carousel-gallery" data-items="1" data-items-responsive="1" data-margins="5" data-dots="false" >
+						<div id="carousel-nosotros" class="section__single_gallery js-carousel-gallery" data-items="1" data-items-responsive="1" data-margins="5" data-dots="false" data-autoplay="true">
 							<!-- Obtener todas las habitaciones -->
 							<?php  
 								$input_ids_img  = get_post_meta($post->ID, 'imageurls_'.$post->ID , true);
@@ -76,6 +75,39 @@
 				</div> <!-- /.col-xs-12 col-md-6 -->
 				
 			</div> <!-- /.row -->
+
+			<!-- Separacion --> <br><br>
+
+			<!-- SECCION APTITUDES MISIÓN Y VISIÓN -->
+			<div class="row">
+
+				<!-- MISIÓN -->
+				<div class="col-xs-6">
+					<!-- Titulo --> <h2 class="text-uppercase"> <?php _e( "misión" , LANG ); ?></h2>
+					<!-- Contenido -->
+					<div class="text-justify">
+						<?php if( isset($theme_mod['text_mision']) && !empty($theme_mod['text_mision']) ) : echo apply_filters('the_content' , $theme_mod['text_mision'] ); ?>
+						<?php else: ?>
+							<p><?php _e("Actualizando Contenido"); ?></p>
+						<?php endif; ?>
+					</div> <!-- /.text-justify -->
+				</div> <!-- /.col-xs-6 -->
+
+				<!-- VISIÓN -->
+				<div class="col-xs-6">
+					<!-- Titulo --> <h2 class="text-uppercase"> <?php _e( "visión" , LANG ); ?></h2>
+					<!-- Contenido -->
+					<div class="text-justify">
+						<?php if( isset($theme_mod['text_vision']) && !empty($theme_mod['text_vision']) ) : echo apply_filters('the_content' , $theme_mod['text_vision'] ); ?>
+						<?php else: ?>
+							<p><?php _e("Actualizando Contenido"); ?></p>
+						<?php endif; ?>
+					</div> <!-- /.text-justify -->
+				</div> <!-- /.col-xs-6 -->
+
+				
+			</div> <!-- /.row -->
+
 		</section> <!-- /.pageNosotros__description -->	
 
 		<!-- Linea de Separacion  --> <div id="separator-line-gray"></div>
@@ -110,7 +142,6 @@ include( locate_template("partials/banner-services.php") );
 
 include( locate_template("partials/carousel-clientes.php") );
 ?>
-
 
 
 <!-- Footer -->

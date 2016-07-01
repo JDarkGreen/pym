@@ -6,13 +6,20 @@
 <!-- Incluir Banner de Pagina -->
 <?php
 	$category = get_queried_object();
+
+	/**
+	* ["term_id"]["name"]["slug"]["term_group"]["term_taxonomy_id"]["taxonomy"]["description"]
+	* ["parent"]["count"]["filter"]["cat_ID"]["category_count"] ["category_description"]
+	* ["cat_name"]["category_nicename"]["category_parent"]
+	*/
+
 	$page     = get_page_by_path('blog'); 
 	$banner   = $page;  // Seteamos la variable banner de acuerdo al post
 	include( locate_template("partials/banner-common-pages.php") ); 
 ?>
 
 <!-- Seccion General -->
-<section class="pageWrapper pageBlog">
+<main class="pageWrapper pageBlog">
 	
 	<div class="container">
 		<div class="row">
@@ -27,6 +34,9 @@
 						'orderby' => 'name' , 'parent' => 0,
 					) );
 
+					/* Extraer la primera categoría */
+					$first_cat = $categorias[0];
+
 					/* Vamos a obtener todos los paquetes de tour y seleccionaremos el primero*/
 					$args = array(
 						'order'          => 'DESC',
@@ -40,41 +50,44 @@
 					if( !empty( $articulos ) ) : 
 				?>
 
-				<article class="pageWrapper__article">
+				<article class="pageWrapper__article pageCommon_preview-post">
 
-					<!-- Titulo --> <h2 class="titleDescriptionSection"><?php _e( "Artículos de Interés" , LANG ); ?></h2>
+					<!-- Titulo  --> <h2 class="titleCommon__page text-uppercase text-xs-left"> <span class="relative"> <?php _e( "blog" , LANG ); ?> </span> </h2> 
 
 					<!-- Items de Artículos -->
 					<div class="row">
-						<?php $i = 0; foreach( $articulos as $articulo ) : ?>
+						<?php 
+							$i = 0;
+							foreach( $articulos as $articulo ) : 
+						?>
+							
+							<!-- Articulos  -->
+							<article class="item-preview-post col-xs-6 text-xs-left">
+								<!-- Imagen -->
+								<figure class="relative">
+									<?php if( has_post_thumbnail( $articulo->ID) ) : ?>
+									<?= get_the_post_thumbnail( $articulo->ID , 'full', array('class'=>'img-fluid') ); ?>
+									<?php endif; ?>
 
-							<article class="item-preview-post col-xs-6">
+									<!-- Fecha -->
+									<figcaption class="text-uppercase text-xs-center container-flex align-content">
+										<?=  get_the_date( 'd M',$articulo->ID ); ?>
+									</figcaption>
+								</figure>
 
-								<!-- Imagen Destacada --> <figure> 
-								<?php if( has_post_thumbnail( $articulo->ID ) ) : 
-									echo get_the_post_thumbnail( $articulo->ID , 'full' , array('class' => 'img-fluid imgNotBlur' ) );
-									endif;
-								?>
-								</figure> <!-- /.fin imagen -->
+								<!-- titulo --> <h3 class=""> <?php _e( $articulo->post_title , LANG ); ?> </h3>
 
-								<!-- Titulo --> <h2 class="text-capitalize"><?php _e( $articulo->post_title , LANG ); ?></h2>
-								<!-- Extracto --> <div class="text-justify"> <?= apply_filters('the_content' , wp_trim_words( $articulo->post_content , 30 , '...' ) ); ?></div>
+								<!-- Extracto --> <div class="text-justify"> <?= !empty($articulo->post_content) ? apply_filters( 'the_content' , wp_trim_words( $articulo->post_content , 20 , '' ) ) : apply_filters("the_content" , "Actualizando Contenido..." ); ?></div>
 
-								<!-- Seccion compartir y botón -->
-								<div class="">
-									<!-- Botón  --> <a href="<?= get_permalink( $articulo->ID ); ?>" class="btnCommon__show-more btnCommon__show-more--rojo text-uppercase pull-right"> <?php _e( 'ver más' , LANG  );  ?> </a>
-								</div> <!-- /. -->
+								<!-- Boton ver mas  -->
+								<a href="<?= get_permalink( $articulo->ID ); ?>" class="btnCommon__show-more text-uppercase"><?php _e( "ver más" , LANG  ); ?></a>
 
-								<!-- Limpiar floats --> <div class="clearfix"></div>
+							</article> <!-- /.item-u_post -->
 
-							</article> <!-- /.item-preview-post -->
-
-							<!-- Linea Separadora -->
 							<?php if( $i % 2 != 0 ) : ?>
-								<!-- Limpiar floats --> <div class="clearfix"></div>
-								<div id="separator-line"></div>
+							<!-- Limpiar Floats  --> <div class="clearfix"></div>
 							<?php endif; ?>
-
+	
 						<?php $i++; endforeach; ?>
 					</div> <!-- /.row -->	
 
@@ -84,57 +97,45 @@
 			</main> <!-- /.col-xs-12 -->
 
 			<!-- Sidebar  Ocultar en mobile -->
-			<aside class="col-md-4 hidden-xs-down">
-				
+			<div class="col-md-4 hidden-xs-down">
+				<aside class="sidebarCommon">
+					<!-- Titulo de Sidebar --> 
+					<h2 class="titleSidebar"> <?php _e( "Categorias" , LANG ); ?></h2>
+
 				<!-- Sección de Categorías -->
-				<section class="sectionLinks__sidebar">
-					<!-- Titulo --> <h2 class="text-capitalize"><?php _e( "Categorías" , LANG ); ?></h2>
+				<?php foreach( $categorias as $categoria ) : ?>
+					<a href="<?= get_term_link( $categoria ); ?>" class="link-to-item <?= $category->term_id == $categoria->term_id ? 'active' : '' ?>"><?php _e( $categoria->name , LANG  ); ?>
+						<!-- Icon  -->
+						<i class="fa fa-chevron-right" aria-hidden="true"></i>
+					</a>
+				<?php endforeach; ?>
 
-					<?php foreach( $categorias as $categoria ) : ?>
-						<a href="<?= get_term_link( $categoria ); ?>" class="link-to-item <?= $category->term_id == $categoria->term_id ? 'active' : '' ?>"><?php _e( $categoria->name , LANG  ); ?></a>
-					<?php endforeach; ?>
+				</aside> <!-- /.sidebarCommon -->
 
-				</section> <!-- /.sectionLinks__sidebar -->
-				
-				<!-- Sidebar Activo -->
-				<?php if ( is_active_sidebar( 'sidebar-publicidad-hotel' ) ) : ?>
-					<?php dynamic_sidebar( 'sidebar-publicidad-hotel' ); ?>
-				<?php else: __("Actualizando contenido" , LANG ) ; endif; ?>
-
-				<!-- Sección Facebook -->
-				<?php
-					if( isset($options['red_social_fb']) && !empty($options['red_social_fb']) ) :
-				?>
-					<section class="container__facebook">
-						
-						<!-- Titulo -->
-						<h2 class="titleWidget text-uppercase"><?php _e( "Facebook", LANG ); ?></h2>			
-			
-						<!-- Contebn -->
-						<div id="fb-root" class=""></div>
-
-						<!-- Script -->
-						<script>(function(d, s, id) {
-							var js, fjs = d.getElementsByTagName(s)[0];
-							if (d.getElementById(id)) return;
-							js = d.createElement(s); js.id = id;
-							js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5";
-							fjs.parentNode.insertBefore(js, fjs);
-						}(document, 'script', 'facebook-jssdk'));</script>
-
-						<div class="fb-page" data-href="<?= $options['red_social_fb']; ?>" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-height="500" data-hide-cover="false" data-show-facepile="true">
-						</div> <!-- /. fb-page-->
-					</section> <!-- /.container__facebook -->
-				<?php else: ?>
-					<p class="text-xs-center">Opcion no habilitada temporalmente</p>
-				<?php endif; ?>				
-
-			</aside> <!-- /.col-md-4 hidden-xs-down -->
+			</div> <!-- /.col-md-4 hidden-xs-down -->
 
 		</div> <!-- /.row -->
 	</div> <!-- /.container -->
 
-</section> <!-- /.pageRooms -->
+</main> <!-- /.pageRooms -->
+
+
+<?php 
+/*
+* Incluir template servicios
+*/ 
+include( locate_template("partials/banner-services.php") );
+
+?>
+
+<?php 
+/*
+* Incluir plantilla clientes
+*/ 
+
+include( locate_template("partials/carousel-clientes.php") );
+?>
+
 
 <!-- Footer -->
 <?php get_footer(); ?>

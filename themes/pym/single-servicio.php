@@ -48,7 +48,7 @@
 				<div class="col-xs-8">
 					<section>
 
-						<!-- Titulo  --> <h2 class="titleCommon__page text-uppercase text-xs-left"> <span class="relative"> <?php _e( $post->post_title , LANG ); ?> </span> </h2> 
+						<!-- Titulo  --> <h2 class="titleCommon__page titleCommon__page--left text-uppercase text-xs-left"> <span class="relative"> <?php _e( $post->post_title , LANG ); ?> </span> </h2> 
 
 						<!-- Separacion  --> <br>
 
@@ -75,7 +75,7 @@
 									*/
 								?>
 
-								<div id="carousel-single-service" class="js-carousel-gallery" data-items="1" data-items-responsive="1" data-margins="5" data-dots="" >
+								<div id="carousel-single-service" class="js-carousel-gallery" data-items="1" data-items-responsive="1" data-margins="5" data-dots="false" data-autoplay="true" >
 									<!-- Obtener todas las habitaciones -->
 									<?php  
 										$input_ids_img  = get_post_meta($post->ID, 'imageurls_'.$post->ID , true);
