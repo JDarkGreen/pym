@@ -98,7 +98,7 @@
 							<!-- Separador --> <br/><br/>
 							
 							<!-- web -->
-							<p class="text-uppercase text-xs-center">www.PYM.com</p>
+							<p class="text-uppercase text-xs-center">www.CONSTRUCTORAPYM.com</p>
 
 						</div> <!-- /.mainFooter__item -->
 					</div> <!-- /.col-xs-12 col-md-3 -->
